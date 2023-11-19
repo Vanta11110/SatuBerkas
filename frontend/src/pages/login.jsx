@@ -24,8 +24,10 @@ const Login = () => {
     message: "",
     success: true,
   });
-
-  const submitForm = (e) => {
+  const csrf = () => axios.get("/sanctum/csrf-cookie");
+  const submitForm = async (e) => {
+    await csrf();
+    
     e.preventDefault();
     var formData = new FormData();
     formData.append("email", email);

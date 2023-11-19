@@ -43,7 +43,6 @@ const Login = () => {
         });
         setTimeout(() => {
           setToast(false);
-          Push.router("/")
         }, 1000);
       })
       .catch((error) => {

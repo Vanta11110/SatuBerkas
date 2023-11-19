@@ -28,35 +28,37 @@ const Login = () => {
 
   const submitForm = async (e) => {
     await csrf();
-    e.preventDefault();
-    try {
-      const response = await axios.post("/login", { email, password });
-      console.log("Login Berhasil");
-      setToast({
-        show: true,
-        message: "Login Berhasil ",
-        success: true,
+   e.preventDefault();
+    var formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    axios
+      .post("/login", formData)
+      .then((response) => {
+        console.log("Login Berhasil");
+        setToast({
+          show: true,
+          message: "Login Berhasil ",
+          success: true,
+        });
+        setTimeout(() => {
+          setToast(false);
+          router.push("/");
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log("Login Gagal");
+        setToast({
+          show: true,
+          message: "Login Gagal",
+          success: false,
+        });
+        setTimeout(() => {
+          setToast(false);
+        }, 1000);
       });
-
-      setTimeout(() => {
-        setToast({ show: false });
-        router.push("/");
-      }, 1000);
-    } catch (error) {
-      console.error("Login Gagal", error);
-
-      setToast({
-        show: true,
-        message: "Login Gagal",
-        success: false,
-      });
-
-      setTimeout(() => {
-        setToast({ show: false });
-      }, 1000);
-    }
-  };
-
+    };
   return (
     <>
       <HeadCustom title={"Login"} />

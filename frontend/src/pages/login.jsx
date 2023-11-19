@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import HeadCustom from "../layout/AdminLayout/Header/head";
 import ToastComp from "../components/Toast/Toast";
 import {useAuth} from "@hooks/auth"
+import { redirect } from "next/dist/server/api-utils";
 
 const Login = () => {
   const router = useRouter();
@@ -41,6 +42,7 @@ const Login = () => {
         });
         setTimeout(() => {
           setToast(false);
+          Push.router("/")
         }, 1000);
       })
       .catch((error) => {

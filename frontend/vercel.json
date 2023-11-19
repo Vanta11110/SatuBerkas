@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "http://localhost:8000/api/$1",
+      "methods": ["GET", "OPTIONS"]
+    }
+  ]
+}

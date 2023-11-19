@@ -24,10 +24,7 @@ const Login = () => {
     success: true,
   });
 
-  const csrf = () => axios.get("/sanctum/csrf-cookie");
-
-  const submitForm = async (e) => {
-    await csrf();
+  const submitForm = (e) => {
     e.preventDefault();
     var formData = new FormData();
     formData.append("email", email);
@@ -44,7 +41,6 @@ const Login = () => {
         });
         setTimeout(() => {
           setToast(false);
-          // router.push("/");
         }, 1000);
       })
       .catch((error) => {

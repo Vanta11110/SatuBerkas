@@ -28,7 +28,7 @@ const Login = () => {
 
   const submitForm = async (e) => {
     await csrf();
-   e.preventDefault();
+    e.preventDefault();
     var formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
@@ -44,7 +44,7 @@ const Login = () => {
         });
         setTimeout(() => {
           setToast(false);
-          router.push("/");
+          // router.push("/");
         }, 1000);
       })
       .catch((error) => {

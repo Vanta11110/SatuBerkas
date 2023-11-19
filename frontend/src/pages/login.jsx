@@ -24,41 +24,68 @@ const Login = () => {
     success: true,
   });
 
-  const csrf = () => axios.get("/sanctum/csrf-cookie");
+  useEffect(() => {
+    if (router.query.reset?.length > 0 && errors.length === 0) {
+      setStatus(atob(router.query.reset));
+      console.log(status);
+    } else {
+      if (status === "success") setStatus("failed");
+    }
+  }, [router.query.reset, errors]);
 
-  const submitForm = async (e) => {
-    await csrf();
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-
-    axios
-      .post("/login", formData)
-      .then((response) => {
-        console.log("Login Berhasil");
-        setToast({
-          show: true,
-          message: "Login Berhasil ",
-          success: true,
-        });
-        setTimeout(() => {
-          setToast(false);
-          // router.push("/");
-        }, 1000);
-      })
-      .catch((error) => {
-        console.log("Login Gagal");
-        setToast({
-          show: true,
-          message: "Login Gagal",
-          success: false,
-        });
-        setTimeout(() => {
-          setToast(false);
-        }, 1000);
+  const submitForm = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(errors);
+      await login({
+        email,
+        password,
+        setErrors,
+        setStatus,
       });
-    };
+
+      // Jika login berhasil, maka eksekusi kode berikutnya
+    } catch (errors) {
+      // Jika terjadi kesalahan pada login, tangani di sini
+      console.error("Gagal login:", errors);
+    }
+  };
+
+  // const csrf = () => axios.get("/sanctum/csrf-cookie");
+
+  // const submitForm = async (e) => {
+  //   await csrf();
+  //   e.preventDefault();
+  //   var formData = new FormData();
+  //   formData.append("email", email);
+  //   formData.append("password", password);
+
+  //   axios
+  //     .post("/login", formData)
+  //     .then((response) => {
+  //       console.log("Login Berhasil");
+  //       setToast({
+  //         show: true,
+  //         message: "Login Berhasil ",
+  //         success: true,
+  //       });
+  //       setTimeout(() => {
+  //         setToast(false);
+  //         // router.push("/");
+  //       }, 1000);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Login Gagal");
+  //       setToast({
+  //         show: true,
+  //         message: "Login Gagal",
+  //         success: false,
+  //       });
+  //       setTimeout(() => {
+  //         setToast(false);
+  //       }, 1000);
+  //     });
+  //   };
   return (
     <>
       <HeadCustom title={"Login"} />

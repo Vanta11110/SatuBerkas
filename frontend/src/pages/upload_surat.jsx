@@ -37,9 +37,9 @@ const UploadSurat = () => {
 
 
   useEffect(() => {
-    if(!user){
-      router.push('/login')
-    }
+    // if(!user){
+    //   router.push('/login')
+    // }
     fetchPenduduk(id);
   }, []);
 

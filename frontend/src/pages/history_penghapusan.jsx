@@ -23,9 +23,9 @@ const History = () => {
   });
 
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
+    // if (!user) {
+    //   router.push("/login");
+    // }
   }, [user, router]);
   useEffect(() => {
     if (!user) {

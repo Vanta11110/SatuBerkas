@@ -31,44 +31,44 @@ const Login = () => {
     }
   });
 
-  const submitForm = async event => {
+  const submitForm = (e) => {
     
-    event.preventDefault();
-    login({
-      email,
-      password,
-      setErrors,
-      setStatus,
-    });
+    e.preventDefault();
+    // login({
+    //   email,
+    //   password,
+    //   setErrors,
+    //   setStatus,
+    // });
 
-    // var formData = new FormData();
-    // formData.append("email", email);
-    // formData.append("password", password);
+    var formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
 
-    // axios
-    //   .post("/login", formData)
-    //   .then((response) => {
-    //     console.log("Login Berhasil");
-    //     setToast({
-    //       show: true,
-    //       message: "Login Berhasil ",
-    //       success: true,
-    //     });
-    //     setTimeout(() => {
-    //       setToast(false);
-    //     }, 1000);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Login Gagal");
-    //     setToast({
-    //       show: true,
-    //       message: "Login Gagal",
-    //       success: false,
-    //     });
-    //     setTimeout(() => {
-    //       setToast(false);
-    //     }, 1000);
-    //   });
+    axios
+      .post("/login", formData)
+      .then((response) => {
+        console.log("Login Berhasil");
+        setToast({
+          show: true,
+          message: "Login Berhasil ",
+          success: true,
+        });
+        setTimeout(() => {
+          setToast(false);
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log("Login Gagal");
+        setToast({
+          show: true,
+          message: "Login Gagal",
+          success: false,
+        });
+        setTimeout(() => {
+          setToast(false);
+        }, 1000);
+      });
     };
   return (
     <>

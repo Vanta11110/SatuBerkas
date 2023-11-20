@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import HeadCustom from "../layout/AdminLayout/Header/head";
 import ToastComp from "../components/Toast/Toast";
 import {useAuth} from "@hooks/auth"
-import { redirect } from "next/dist/server/api-utils";
 
 const Login = () => {
   const router = useRouter();
@@ -12,7 +11,6 @@ const Login = () => {
   const [status, setStatus] = useState("");
   const { login } = useAuth({
     middleware: "guest",
-    status,
     redirectIfAuthenticated: "/",
   });
 
@@ -25,37 +23,52 @@ const Login = () => {
     success: true,
   });
 
-  const submitForm = (e) => {
-    
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
+  useEffect(() => {
+    if (router.query.reset?.length > 0 && errors.length === 0) {
+      setStatus(atob(router.query.reset));
+    } else {
+      setStatus(null);
+    }
+  });
 
-    axios
-      .post("/login", formData)
-      .then((response) => {
-        console.log("Login Berhasil");
-        setToast({
-          show: true,
-          message: "Login Berhasil ",
-          success: true,
-        });
-        setTimeout(() => {
-          setToast(false);
-        }, 1000);
-      })
-      .catch((error) => {
-        console.log("Login Gagal");
-        setToast({
-          show: true,
-          message: "Login Gagal",
-          success: false,
-        });
-        setTimeout(() => {
-          setToast(false);
-        }, 1000);
-      });
+  const submitForm = async event => {
+    
+    event.preventDefault();
+    login({
+      email,
+      password,
+      setErrors,
+      setStatus,
+    });
+
+    // var formData = new FormData();
+    // formData.append("email", email);
+    // formData.append("password", password);
+
+    // axios
+    //   .post("/login", formData)
+    //   .then((response) => {
+    //     console.log("Login Berhasil");
+    //     setToast({
+    //       show: true,
+    //       message: "Login Berhasil ",
+    //       success: true,
+    //     });
+    //     setTimeout(() => {
+    //       setToast(false);
+    //     }, 1000);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Login Gagal");
+    //     setToast({
+    //       show: true,
+    //       message: "Login Gagal",
+    //       success: false,
+    //     });
+    //     setTimeout(() => {
+    //       setToast(false);
+    //     }, 1000);
+    //   });
     };
   return (
     <>

@@ -27,6 +27,7 @@ Route::get('/soft-delete', function () {
     return 'Soft delete command has been executed.';
 });
 
+
 Route::apiResource('/penduduk', PendudukController::class);
 Route::get('/total-penduduk-count', [PendudukController::class, 'getTotalPendudukCount']);
 Route::get('/total-surat-count', [FileController::class, 'getTotalSurat']);

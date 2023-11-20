@@ -46,12 +46,4 @@ public function store(Request $request)
 
     return response()->json(['message' => 'Pengguna telah ditambahkan']);
 }
-public function login(LoginRequest $request): Response
-    {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        return response()->noContent();
-    }
 }

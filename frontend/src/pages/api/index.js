@@ -1,9 +1,9 @@
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "https://satuberkas.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS"); // Tambahkan metode OPTIONS
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type"); // Sesuaikan dengan header yang diperlukan
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type"); 
 
-  // Tangani metode OPTIONS
+
   if (req.method === "OPTIONS") {
     res.status(200).end();
     return;

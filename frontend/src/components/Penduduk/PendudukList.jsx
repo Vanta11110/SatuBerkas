@@ -70,10 +70,10 @@ const PendudukList = (props) => {
       });
   }
   function deletePenduduk(id) {
-    // let params = { _method: "delete" };
+    let params = { _method: "delete" };
 
     axios
-      .delete("/api/penduduk/" + id)
+      .post("/api/penduduk/" + id, params)
       .then((response) => {
         fetchPenduduk();
         console.log("delete berhasil");
@@ -95,6 +95,9 @@ const PendudukList = (props) => {
           success: false,
         });
         console.log("Toast Status:", toast);
+        setTimeout(() => {
+          setToast(false);
+        }, 3000);
       });
   }
   const toggleDropdown = (pendudukId) => {

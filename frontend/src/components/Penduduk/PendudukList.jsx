@@ -70,10 +70,10 @@ const PendudukList = (props) => {
       });
   }
   function deletePenduduk(id) {
-    let params = { _method: "delete" };
+    // let params = { _method: "delete" };
 
     axios
-      .post("/api/penduduk/" + id, params)
+      .delete("/api/penduduk/" + id)
       .then((response) => {
         fetchPenduduk();
         console.log("delete berhasil");

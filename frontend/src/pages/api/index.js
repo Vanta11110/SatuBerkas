@@ -10,7 +10,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`http://localhost:8000/api${req.url}`);
+    const response = await fetch(
+      `https://satuberkas-backend.my.id/public/api${req.url}`
+    );
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {

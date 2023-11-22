@@ -19,6 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
+    'Access-Control-Allow-Methods' => ['HEAD, OPTIONS, GET, PUT, DELETE'],
+
     'allowed_origins' => [env('FRONTEND_URL','https://satuberkas.vercel.app')],
 
     'allowed_origins_patterns' => [],

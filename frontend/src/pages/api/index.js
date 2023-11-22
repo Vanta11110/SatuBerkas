@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://satuberkas-backend.my.id/public/api${req.url}`
+      `https://satuberkas-backend.my.id/public/${req.url}`
     );
     const data = await response.json();
     res.status(200).json(data);

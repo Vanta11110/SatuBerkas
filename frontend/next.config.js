@@ -8,7 +8,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   env: {
-    BACKEND_URL: "https://satuberkas-backend.my.id/public/api",
+    BACKEND_URL: "https://satuberkas-backend.my.id/public",
   },
 };
 

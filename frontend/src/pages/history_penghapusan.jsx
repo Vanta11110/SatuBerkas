@@ -23,11 +23,6 @@ const History = () => {
   });
 
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/login");
-    // }
-  }, [user, router]);
-  useEffect(() => {
     if (!user) {
       router.push("/login");
     };

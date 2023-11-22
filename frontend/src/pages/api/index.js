@@ -1,10 +1,6 @@
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "https://satuberkas.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS, POST");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type,Origin, X-Requested-With,"
-  ); 
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS, POST, HEAD");
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
 

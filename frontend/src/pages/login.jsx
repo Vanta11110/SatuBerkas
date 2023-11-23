@@ -45,7 +45,7 @@ const Login = () => {
     formData.append("password", password);
 
     axios
-      .post("/login", formData)
+      .post("/api/login", formData)
       .then((response) => {
         console.log("Login Berhasil");
         setToast({

@@ -39,13 +39,16 @@ const Login = () => {
     //   setErrors,
     //   setStatus,
     // });
+    const csrf = () => axios.get("/sanctum/csrf-cookie");
 
     var formData = new FormData();
+    await csrf();
+
     formData.append("email", email);
     formData.append("password", password);
 
     axios
-      .post("/api/login", formData)
+      .post("/login", formData)
       .then((response) => {
         console.log("Login Berhasil");
         setToast({

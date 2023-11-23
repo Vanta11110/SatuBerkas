@@ -23,9 +23,9 @@ const History = () => {
   });
 
   useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    };
+    // if (!user) {
+    //   router.push("/login");
+    // };
     axios.get("/api/soft-deleted-data").then((response) => {
       setSoftDeletedData(response.data);
     });

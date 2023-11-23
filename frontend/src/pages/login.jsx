@@ -23,57 +23,54 @@ const Login = () => {
     success: true,
   });
 
-  useEffect(() => {
-    if (router.query.reset?.length > 0 && errors.length === 0) {
-      setStatus(atob(router.query.reset));
-    } else {
-      setStatus(null);
-    }
-  });
+  // useEffect(() => {
+  //   if (router.query.reset?.length > 0 && errors.length === 0) {
+  //     setStatus(atob(router.query.reset));
+  //   } else {
+  //     setStatus(null);
+  //   }
+  // });
   
   const csrf = async() => {
     await axios.get("/sanctum/csrf-cookie")
   };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    // login({
-    //   email,
-    //   password,
-    //   setErrors,
-    //   setStatus,
-    // });
+ const submitForm = async (e) => {
+  e.preventDefault();
 
-    var formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    
+  try {
     await csrf();
-    axios
-      .post("/login", formData)
-      .then((response) => {
-        console.log("Login Berhasil");
-        setToast({
-          show: true,
-          message: "Login Berhasil ",
-          success: true,
-        });
-        setTimeout(() => {
-          setToast(false);
-          router.push('/')
-        }, 1000);
-      })
-      .catch((error) => {
-        console.log("Login Gagal");
-        setToast({
-          show: true,
-          message: "Login Gagal",
-          success: false,
-        });
-        setTimeout(() => {
-          setToast(false);
-        }, 1000);
-      });
+
+    const response = await axios.post("/login", {
+      email,
+      password,
+    });
+
+    console.log("Login Berhasil", response.data);
+
+    setToast({
+      show: true,
+      message: "Login Berhasil ",
+      success: true,
+    });
+
+    setTimeout(() => {
+      setToast(false);
+      router.push('/');
+    }, 1000);
+  } catch (error) {
+    console.error("Login Gagal", error);
+
+    setToast({
+      show: true,
+      message: "Login Gagal",
+      success: false,
+    });
+
+    setTimeout(() => {
+      setToast(false);
+    }, 1000);
+  }
     };
   return (
     <>

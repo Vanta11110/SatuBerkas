@@ -30,6 +30,10 @@ const Login = () => {
       setStatus(null);
     }
   });
+  
+  const csrf = async() => {
+    await axios.get("/sanctum/csrf-cookie")
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -39,14 +43,12 @@ const Login = () => {
     //   setErrors,
     //   setStatus,
     // });
-    const csrf = () => axios.get("/sanctum/csrf-cookie");
 
     var formData = new FormData();
-    await csrf();
-
     formData.append("email", email);
     formData.append("password", password);
-
+    
+    await csrf();
     axios
       .post("/login", formData)
       .then((response) => {

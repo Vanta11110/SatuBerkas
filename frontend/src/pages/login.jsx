@@ -40,7 +40,6 @@ const Login = () => {
 
   try {
     await csrf();
-    axios.defaults.withCredentials = true;
 
     const response = await axios.post("/login", {
       email,

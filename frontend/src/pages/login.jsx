@@ -55,6 +55,7 @@ const Login = () => {
         });
         setTimeout(() => {
           setToast(false);
+          router.push('/')
         }, 1000);
       })
       .catch((error) => {

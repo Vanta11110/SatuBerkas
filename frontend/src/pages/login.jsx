@@ -31,46 +31,50 @@ const Login = () => {
   //   }
   // });
   
-  const csrf = async() => {
-    await axios.get("/sanctum/csrf-cookie")
-  };
+  // const csrf = async() => {
+  //   await axios.get("/sanctum/csrf-cookie")
+  // };
 
- const submitForm = async (e) => {
+ const submitForm = (e) => {
   e.preventDefault();
 
-  try {
-    await csrf();
+  axios
+    .get("/sanctum/csrf-cookie")
+    .then((response) => {
+      return axios.post("/login", {
+        email,
+        password,
+      });
+    })
+    .then((response) => {
+      console.log("Login Berhasil", response.data);
 
-    const response = await axios.post("/login", {
-      email,
-      password,
+      setToast({
+        show: true,
+        message: "Login Berhasil",
+        success: true,
+      });
+
+      setTimeout(() => {
+        setToast(false);
+        router.push('/');
+      }, 1000);
+    })
+    .catch((error) => {
+      // Terjadi kesalahan baik dalam pengambilan CSRF token atau permintaan login
+      console.error("Login Gagal", error);
+
+      setToast({
+        show: true,
+        message: "Login Gagal",
+        success: false,
+      });
+
+      setTimeout(() => {
+        setToast(false);
+      }, 1000);
     });
 
-    console.log("Login Berhasil", response.data);
-
-    setToast({
-      show: true,
-      message: "Login Berhasil ",
-      success: true,
-    });
-
-    setTimeout(() => {
-      setToast(false);
-      router.push('/');
-    }, 1000);
-  } catch (error) {
-    console.error("Login Gagal", error);
-
-    setToast({
-      show: true,
-      message: "Login Gagal",
-      success: false,
-    });
-
-    setTimeout(() => {
-      setToast(false);
-    }, 1000);
-  }
     };
   return (
     <>

@@ -46,7 +46,7 @@ const Login = () => {
         password,
       });
     })
-    .then((response) => {
+    .then((response) => { mutate(),
       console.log("Login Berhasil", response.data);
 
       setToast({

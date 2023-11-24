@@ -117,9 +117,9 @@ const DetailPenduduk = () => {
   const { id } = router.query;
 
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/login");
-    // }
+    if (!user) {
+      router.push("/login");
+    }
     fetchPenduduk(id);
     fetchSurat(id);
   }, [id,user,router]);

@@ -96,6 +96,7 @@ const Login = () => {
               </h2>
 
               <form onSubmit={submitForm}>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div className="mb-4 mt-2">
                   <label
                     htmlFor="email"

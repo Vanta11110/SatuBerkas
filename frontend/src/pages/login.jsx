@@ -76,6 +76,7 @@ const Login = () => {
     });
 
     };
+    
   return (
     <>
       <HeadCustom title={"Login"} />
@@ -95,8 +96,7 @@ const Login = () => {
                 Welcome Back!
               </h2>
 
-              <form onSubmit={submitForm}>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+              <form onSubmit={submitForm} method="POST">
                 <div className="mb-4 mt-2">
                   <label
                     htmlFor="email"

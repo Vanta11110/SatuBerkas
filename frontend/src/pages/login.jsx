@@ -17,33 +17,35 @@ const Login = () => {
     success: true,
   });
 
+  const csrf = async () => {
+    await axios.get("/sanctum/csrf-cookie");
+  };
 
- const submitForm = (e) => {
-  e.preventDefault();
+  const submitForm = async (e) => {
+    e.preventDefault();
 
-  axios
-    .get("/sanctum/csrf-cookie")
-    .then(() => {
-      return axios.post("/login", {
+    try {
+      await csrf();
+      console.log(csrf)
+
+      const response = await axios.post("/login", {
         email,
         password,
-      })
-      .then(() => { mutate(),
-        console.log("Login Berhasil");
-        
-        setToast({
-          show: true,
-          message: "Login Berhasil",
-          success: true,
-        });
-        
-        setTimeout(() => {
-          setToast(false);
-          router.push('/');
-        }, 1000);
-      })
-    })
-      .catch((error) => {
+      });
+
+      console.log("Login Berhasil", response.data);
+
+      setToast({
+        show: true,
+        message: "Login Berhasil",
+        success: true,
+      });
+
+      setTimeout(() => {
+        setToast(false);
+        router.push("/");
+      }, 1000);
+    } catch (error) {
       console.error("Login Gagal", error);
 
       setToast({
@@ -55,9 +57,8 @@ const Login = () => {
       setTimeout(() => {
         setToast(false);
       }, 1000);
-    });
-
-    };
+    }
+  };
 
   return (
     <>

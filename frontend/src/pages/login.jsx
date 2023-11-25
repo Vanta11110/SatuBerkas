@@ -26,8 +26,6 @@ const Login = () => {
 
     try {
       await csrf();
-      console.log(csrf())
-
       const response = await axios.post("/login", {
         email,
         password,

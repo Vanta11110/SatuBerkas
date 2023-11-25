@@ -3,16 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import HeadCustom from "../layout/AdminLayout/Header/head";
 import ToastComp from "../components/Toast/Toast";
-import {useAuth} from "@hooks/auth"
+
 
 const Login = () => {
   const router = useRouter();
-
-  const [status, setStatus] = useState("");
-  const { login } = useAuth({
-    middleware: "guest",
-    redirectIfAuthenticated: "/",
-  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,45 +17,33 @@ const Login = () => {
     success: true,
   });
 
-  // useEffect(() => {
-  //   if (router.query.reset?.length > 0 && errors.length === 0) {
-  //     setStatus(atob(router.query.reset));
-  //   } else {
-  //     setStatus(null);
-  //   }
-  // });
-  
-  // const csrf = async() => {
-  //   await axios.get("/sanctum/csrf-cookie")
-  // };
 
  const submitForm = (e) => {
   e.preventDefault();
 
   axios
     .get("/sanctum/csrf-cookie")
-    .then((response) => {
+    .then(() => {
       return axios.post("/login", {
         email,
         password,
-      });
+      })
+      .then(() => { mutate(),
+        console.log("Login Berhasil");
+        
+        setToast({
+          show: true,
+          message: "Login Berhasil",
+          success: true,
+        });
+        
+        setTimeout(() => {
+          setToast(false);
+          router.push('/');
+        }, 1000);
+      })
     })
-    .then((response) => { mutate(),
-      console.log("Login Berhasil", response.data);
-
-      setToast({
-        show: true,
-        message: "Login Berhasil",
-        success: true,
-      });
-
-      setTimeout(() => {
-        setToast(false);
-        router.push('/');
-      }, 1000);
-    })
-    .catch((error) => {
-      // Terjadi kesalahan baik dalam pengambilan CSRF token atau permintaan login
+      .catch((error) => {
       console.error("Login Gagal", error);
 
       setToast({
@@ -76,7 +58,7 @@ const Login = () => {
     });
 
     };
-    
+
   return (
     <>
       <HeadCustom title={"Login"} />

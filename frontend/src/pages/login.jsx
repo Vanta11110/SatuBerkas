@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import HeadCustom from "../layout/AdminLayout/Header/head";
 import ToastComp from "../components/Toast/Toast";
+import Head from "next/head";
 
 
 const Login = () => {
@@ -61,6 +62,7 @@ const Login = () => {
   return (
     <>
       <HeadCustom title={"Login"} />
+      <Head><meta name="csrf-token" content="{{ csrf_token() }}"/></Head>
       <div className="flex justify-center items-center h-screen border font-sans">
         <div className="w-full h-full">
           <div className=" min-h-screen flex items-center justify-center py-2  bg-orangePrimary">

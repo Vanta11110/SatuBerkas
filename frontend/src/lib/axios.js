@@ -5,7 +5,7 @@ const axios = Axios.create({
   withCredentials: true,
   headers: {
     "X-Requested-With": "XMLHttpRequest",
-    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+    "X-CSRF-TOKEN": Document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
   },
 });
 

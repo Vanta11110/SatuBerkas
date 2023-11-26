@@ -178,8 +178,6 @@ const UpdatePenduduk = () => {
       url = "api/penduduk/" + id;
       formData.append("_method", "PUT");
     }
-    console.log(kelurahan);
-
     axios
       .post(url, formData)
       .then((response) => {

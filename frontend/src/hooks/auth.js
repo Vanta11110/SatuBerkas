@@ -57,7 +57,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
           "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
         },
       })
-      .then(() => mutate())
+      .then(() => mutate(),console.log("Login Berhasil"))
       .catch((error) => {
         if (error.response.status !== 422) throw error;
         setErrors(error.response.data.errors);

@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PropsWithChildren } from 'react'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { faPowerOff} from '@fortawesome/free-solid-svg-icons'
-import { useAuth } from '@hooks/auth'
-import axios from '@lib/axios'
 import { useRouter } from "next/router";
 
 type ItemWithIconProps = {
@@ -32,7 +30,6 @@ export default function HeaderProfileNav() {
      try {
        const apiToken = localStorage.getItem("api_token");
        if (apiToken) {
-         await axios.post("/api/logout");
          localStorage.removeItem("api_token");
        }
        router.push("/login")

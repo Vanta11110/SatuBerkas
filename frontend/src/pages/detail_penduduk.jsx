@@ -83,7 +83,7 @@ const DetailPenduduk = () => {
     // }
     fetchPenduduk(id);
     fetchSurat(id);
-  }, [id,user,router]);
+  }, [id,router]);
 
   
   function fetchPenduduk(id, page = 1) {

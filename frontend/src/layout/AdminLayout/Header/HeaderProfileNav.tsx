@@ -28,9 +28,9 @@ export default function HeaderProfileNav() {
   const router = useRouter()
    const logout = async () => {
      try {
-       const apiToken = localStorage.getItem("api_token");
+       const apiToken = sessionStorage.getItem("api_token");
        if (apiToken) {
-         localStorage.removeItem("api_token");
+         sessionStorage.removeItem("api_token");
        }
        router.push("/login")
      } catch (error) {

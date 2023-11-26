@@ -29,7 +29,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     setErrors([]);
 
     axios
-      .post("/register", props)
+      .post("/api/register", props)
       .then(() => mutate())
       .catch((error) => {
         if (error.response.status !== 422) throw error;
@@ -56,7 +56,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
       setStatus(null);
 
       // Melakukan request login menggunakan axios
-      const response = await axios.post("/login", props, {
+      const response = await axios.post("/api/login", props, {
         headers: {
           "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
         },

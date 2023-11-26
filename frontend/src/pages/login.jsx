@@ -35,11 +35,11 @@ const Login = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    const csrfToken = getCookie('XSRF-TOKEN');
-    console.log(decodeURIComponent(csrfToken));
-
+    
     try {
       await csrf();
+      const csrfToken = getCookie('XSRF-TOKEN');
+      console.log(decodeURIComponent(csrfToken));
       const response = await axios.post("/login", {
         email,
         password,

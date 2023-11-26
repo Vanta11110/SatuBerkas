@@ -120,7 +120,7 @@ export default function AddDataPenduduk() {
   const [pendudukid, setPendudukId] = useState("");
   const [penduduk, setPenduduk] = useState([]);
   const [jenisKelamin, setJenisKelamin] = useSelectChange(null);
-  const [kelurahan, setKelurahan] = useSelectChange("Gunung Samarinda");
+  const [kelurahan, setKelurahan] = useState("Gunung Samarinda");
   const [rt, setRt] = useSelectChange(null);
   const [agama, setAgama] = useSelectChange(null);
   const [pekerjaan, setPekerjaan] = useSelectChange(null);

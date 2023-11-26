@@ -124,7 +124,7 @@ const DetailPenduduk = () => {
       ? genderOptions.find((option) => option.value === penduduk.jenis_kelamin)
       : null
   );
-  const [kelurahan, setKelurahan] = useSelectChange("Gunung Samarinda");
+  const [kelurahan, setKelurahan] = useState("Gunung Samarinda");
   const [rt, setRt] = useState(
     penduduk ? rtOptions.find((option) => option.value === penduduk.rt) : null
   );
@@ -188,7 +188,7 @@ const DetailPenduduk = () => {
         setJenisKelamin(response.data.jenis_kelamin);
         setAlamat(response.data.alamat);
         setRt(response.data.rt);
-        setKelurahan(response.data.kelurahan);
+        // setKelurahan(response.data.kelurahan);
         setAgama(response.data.agama);
         setPekerjaan(response.data.pekerjaan);
         setStatus(response.data.status_perkawinan);

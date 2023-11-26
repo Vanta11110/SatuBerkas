@@ -8,14 +8,14 @@ import {useAuth} from "@hooks/auth"
 
 
 const DataPenduduk = () => {
-  const {user} = useAuth();
-  const router = useRouter();
+  // const {user} = useAuth();
+  // const router = useRouter();
   
-  useEffect (() =>{
-    if(!user){
-      router.push("/login");
-    }
-  },[user, router]);
+  // useEffect (() =>{
+  //   if(!user){
+  //     router.push("/login");
+  //   }
+  // },[user, router]);
 
   return (
     <>

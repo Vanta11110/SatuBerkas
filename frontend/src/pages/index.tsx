@@ -26,14 +26,14 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement
 
 
 const Home: NextPage = () => {
-  // const { user } = useAuth();
-  // const router = useRouter();
+   const router = useRouter();
+   const storedToken = localStorage.getItem('authToken');
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     router.push("/login");
-  //   }
-  // }, [user, router]);
+  useEffect(() => {
+    if (!storedToken) {
+      router.push("/login")
+    }
+  }, [storedToken, router]);
 
   return(
 

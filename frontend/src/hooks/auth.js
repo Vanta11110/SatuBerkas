@@ -46,23 +46,37 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     }
   };
   const login = async ({ setErrors, setStatus, ...props }) => {
-    await csrf();
-    const csrfToken = getCookie("XSRF-TOKEN");
-    setErrors([]);
-    setStatus(null);
+    try {
+      // Mendapatkan CSRF token
+      await csrf();
+      const csrfToken = getCookie("XSRF-TOKEN");
 
-    axios
-      .post("/login", props, {
+      // Menghapus error dan status sebelum request login
+      setErrors([]);
+      setStatus(null);
+
+      // Melakukan request login menggunakan axios
+      const response = await axios.post("/login", props, {
         headers: {
           "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
         },
-      })
-      .then(() => mutate(),console.log("Login Berhasil"))
-      .catch((error) => {
-        if (error.response.status !== 422) throw error;
-        setErrors(error.response.data.errors);
       });
+
+      // Jika request berhasil, memanggil mutate dan mencetak pesan sukses
+      mutate();
+      console.log("Login Berhasil");
+    } catch (error) {
+      // Menangani error dari request login
+      if (error.response && error.response.status === 422) {
+        // Menangani error validasi (status 422)
+        setErrors(error.response.data.errors);
+      } else {
+        // Melempar error selain status 422
+        throw error;
+      }
+    }
   };
+
 
   const forgotPassword = async ({ setErrors, setStatus, email }) => {
     await csrf();

@@ -18,16 +18,29 @@ const Login = () => {
     success: true,
   });
 
+  const getCookie = (name) => {
+    const value = `;${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2){
+      return parts.pop().split(';').shift();
+    }
+  }
+
   const csrf = async () => {
     await axios.get("/sanctum/csrf-cookie");
   };
 
+
+
   const submitForm = async (e) => {
     e.preventDefault();
 
+    const csrfToken = getCookie('XSRF-TOKEN');
+    console.log(decodeURIComponent(csrfToken));
+
     try {
       await csrf();
-      const response = await axios.post("/api/login", {
+      const response = await axios.post("/login", {
         email,
         password,
       });

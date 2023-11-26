@@ -45,37 +45,41 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
       return parts.pop().split(";").shift();
     }
   };
-  const login = async ({ setErrors, setStatus, ...props }) => {
-    try {
-      // Mendapatkan CSRF token
-      await csrf();
-      const csrfToken = getCookie("XSRF-TOKEN");
+const login = async ({ setErrors, setStatus, ...props }) => {
+  try {
+    // Mendapatkan CSRF token
+    await csrf();
+    const csrfToken = getCookie("XSRF-TOKEN");
 
-      // Menghapus error dan status sebelum request login
-      setErrors([]);
-      setStatus(null);
+    // Menghapus error dan status sebelum request login
+    setErrors([]);
+    setStatus(null);
 
-      // Melakukan request login menggunakan axios
-      const response = await axios.post("/api/login", props, {
-        headers: {
-          "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
-        },
-      });
+    // Melakukan request login menggunakan axios
+    const response = await axios.post("/api/login", props, {
+      headers: {
+        "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
+      },
+    });
 
-      // Jika request berhasil, memanggil mutate dan mencetak pesan sukses
-      mutate();
-      console.log("Login Berhasil");
-    } catch (error) {
-      // Menangani error dari request login
-      if (error.response && error.response.status === 422) {
-        // Menangani error validasi (status 422)
-        setErrors(error.response.data.errors);
-      } else {
-        // Melempar error selain status 422
-        throw error;
-      }
+    // Jika request berhasil, memanggil mutate dan mencetak pesan sukses
+    mutate();
+    console.log("Login Berhasil");
+
+    // Menyimpan token ke penyimpanan lokal
+    const apiToken = response.data.api_token;
+    localStorage.setItem("api_token", apiToken);
+  } catch (error) {
+    // Menangani error dari request login
+    if (error.response && error.response.status === 422) {
+      // Menangani error validasi (status 422)
+      setErrors(error.response.data.errors);
+    } else {
+      // Melempar error selain status 422
+      throw error;
     }
-  };
+  }
+};
 
 
   const forgotPassword = async ({ setErrors, setStatus, email }) => {

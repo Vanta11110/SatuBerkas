@@ -92,33 +92,25 @@ const DetailPenduduk = () => {
 
   
   function fetchPenduduk(id) {
-    let url = `/api/penduduk`;
+    let url = `/api/penduduk/${id}`;
     axios
       .get(url)
       .then((response) => {
-        const penduduk = response.data.data.find((p) => p.id === id);
-
-        if (penduduk) {
-          setPenduduk(penduduk);
-          setNik(penduduk.nik);
-          setNama(penduduk.nama);
-          setNokk(penduduk.no_kk);
-          setTanggalLahir(penduduk.tanggal_lahir);
-          setJenisKelamin(penduduk.jenis_kelamin);
-          setAlamat(penduduk.alamat);
-          setRt(penduduk.rt);
-          // setKelurahan(penduduk.kelurahan);
-          setAgama(penduduk.agama);
-          setPekerjaan(penduduk.pekerjaan);
-          setStatus(penduduk.status_perkawinan);
-          setPendidikanTerakhir(penduduk.pendidikan_terakhir);
-          setAyah(penduduk.ayah);
-          setIbu(penduduk.ibu);
-        } else {
-          console.log(
-            `Penduduk dengan ID ${id} tidak ditemukan pada halaman ${page}`
-          );
-        }
+        setPenduduk(response.data);
+        setNik(response.data.nik);
+        setNama(response.data.nama);
+        setNokk(response.data.no_kk);
+        setTanggalLahir(response.data.tanggal_lahir);
+        setJenisKelamin(response.data.jenis_kelamin);
+        setAlamat(response.data.alamat);
+        setRt(response.data.rt);
+        setKelurahan(response.data.kelurahan);
+        setAgama(response.data.agama);
+        setPekerjaan(response.data.pekerjaan);
+        setStatus(response.data.status_perkawinan);
+        setPendidikanTerakhir(response.data.pendidikan_terakhir);
+        setAyah(response.data.ayah);
+        setIbu(response.data.ibu);
       })
       .catch((error) => {
         console.error(error);

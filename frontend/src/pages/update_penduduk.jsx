@@ -89,7 +89,7 @@ const UpdatePenduduk = () => {
 
   useEffect(() => {
     fetchPenduduk(id);
-  }, [user, router]);
+  }, []);
 
   const namaChange = (e) => {
     let re = /^[A-Za-z\s]+$/;

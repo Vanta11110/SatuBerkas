@@ -88,7 +88,7 @@ const DetailPenduduk = () => {
   useEffect(() => {
     fetchPenduduk(id);
     fetchSurat(id);
-  }, [id,router]);
+  }, [id]);
 
   
   function fetchPenduduk(id) {

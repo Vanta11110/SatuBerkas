@@ -67,7 +67,7 @@ const login = async ({ setErrors, setStatus, ...props }) => {
     console.log("Login Berhasil");
 
     // Menyimpan token ke penyimpanan lokal
-    const apiToken = response.data.api_token;
+    const apiToken = response.data.token;
     localStorage.setItem("api_token", apiToken);
   } catch (error) {
     // Menangani error dari request login

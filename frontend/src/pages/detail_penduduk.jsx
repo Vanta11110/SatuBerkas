@@ -7,6 +7,7 @@ import ToastComp from "../components/Toast/Toast";
 import { AdminLayout } from "@layout";
 import { Card } from "react-bootstrap";
 import {useAuth} from "@hooks/auth"
+import useSelectChange from "../hooks/select";
 
 const genderOptions = [
   { value: "Laki-Laki", label: "Laki-Laki" },

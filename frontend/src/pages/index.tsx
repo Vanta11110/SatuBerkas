@@ -17,9 +17,9 @@ import JumlahPenduduk from "../components/Data/JumlahPenduduk"
 import Surat from "../components/Data/Surat"
 import Admin from "../components/Data/Admin"
 import SuratNow from "../components/Data/SuratNow"
-import { useAuth } from '@hooks/auth'
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+
 
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Filler)
@@ -27,13 +27,16 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement
 
 const Home: NextPage = () => {
    const router = useRouter();
-   const storedToken = localStorage.getItem('authToken');
 
   useEffect(() => {
-    if (!storedToken) {
-      router.push("/login")
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("api_token");
+
+      if (!storedToken) {
+        router.push("/login");
+      }
     }
-  }, [storedToken, router]);
+  }, [router]);
 
   return(
 

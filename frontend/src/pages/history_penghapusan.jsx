@@ -36,7 +36,7 @@ const History = () => {
     });
 
     fetchPenduduk(pendudukIds);
-  }, [pendudukIds, router, user]);
+  }, [pendudukIds, router]);
 
   function fetchPenduduk(id) {
     let url = `/api/penduduk/${id}`;

@@ -91,9 +91,9 @@ const DetailPenduduk = () => {
     axios
       .get(url)
       .then((response) => {
-        setPenduduk(response.data);
-        setNik(response.data.nik);
-        setNama(response.data.nama);
+        setPenduduk(response.data.data);
+        setNik(response.data.data.nik);
+        setNama(response.data.data.nama);
         setNokk(response.data.no_kk);
         setTanggalLahir(response.data.tanggal_lahir);
         setJenisKelamin(response.data.jenis_kelamin);

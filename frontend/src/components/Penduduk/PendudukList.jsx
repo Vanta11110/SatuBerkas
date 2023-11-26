@@ -298,7 +298,7 @@ const PendudukList = (props) => {
                 id={`dropdown-${person.id}`}
                 className={`z-10 right-1 ${
                   activeDropdown === person.id ? "block" : "hidden"
-                }  absolute mt-3 rounded-lg shadow w-auto border border-solid border-gray-800`}
+                }  absolute mt-10 rounded-lg shadow w-auto border border-solid border-gray-800`}
               >
                 <ul
                   className="text-sm bg-white text-gray-700"

@@ -20,7 +20,7 @@ const Login = () => {
 
    useEffect(() => {
      if (typeof window !== "undefined") {
-       const storedToken = localStorage.getItem("api_token");
+       const storedToken = sessionStorage.getItem("api_token");
        if (storedToken) {
          router.push("/");
        }
@@ -48,7 +48,7 @@ const Login = () => {
       console.log("Login Berhasil", response.data);
       console.log("Login Berhasil");
       const apiToken = response.data.token;
-      localStorage.setItem("api_token", apiToken);
+      sessionStorage.setItem("api_token", apiToken);
 
       setToast({
         show: true,

@@ -79,7 +79,7 @@ const UpdatePenduduk = () => {
 
    useEffect(() => {
      if (typeof window !== "undefined") {
-       const storedToken = localStorage.getItem("api_token");
+       const storedToken = sessionStorage.getItem("api_token");
 
        if (!storedToken) {
          router.push("/login");

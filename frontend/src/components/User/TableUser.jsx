@@ -36,7 +36,7 @@ const User = () => {
     let params = { _method: "delete" };
 
     axios
-      .post("/api/admin" + id, params)
+      .post("/api/admin/" + id, params)
       .then((response) => {
         console.log("delete berhasil")
         setToast({

@@ -123,11 +123,25 @@ const login = async ({ setErrors, setStatus, ...props }) => {
   };
 
   const logout = async () => {
-    if (!error) {
-      await axios.post("/logout").then(() => mutate());
-    }
+    try {
+      // Mendapatkan token dari localStorage
+      const apiToken = localStorage.getItem("api_token");
 
-    window.location.pathname = "/login";
+      // Memeriksa apakah token ada sebelum melakukan logout
+      if (apiToken) {
+        // Melakukan permintaan logout ke server
+        await axios.post("/api/logout");
+
+        // Jika permintaan logout berhasil, hapus token dari localStorage
+        localStorage.removeItem("api_token");
+      }
+
+      // Mengarahkan pengguna ke halaman login
+      window.location.pathname = "/login";
+    } catch (error) {
+      // Menangani error jika terjadi kesalahan pada permintaan logout
+      console.error("Error during logout:", error);
+    }
   };
 
   useEffect(() => {

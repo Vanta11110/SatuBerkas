@@ -198,7 +198,7 @@ function RekapSurat() {
           message: "Data Gagal Dihapus",
           success: false,
         });
-        // console.log("Toast should show for success");
+        console.log("Toast should show for success");
         setTimeout(() => {
           setToast(false);
         }, 2000);
@@ -365,7 +365,7 @@ function RekapSurat() {
                         id={`dropdown-${surat.id}`}
                         className={`z-10 right-1 ${
                           activeDropdown === surat.id ? "block" : "hidden"
-                        }  absolute rounded-lg shadow w-auto border border-solid border-gray-800`}
+                        }  absolute mt-10 rounded-lg shadow w-auto border border-solid border-gray-800`}
                       >
                         <ul
                           className="text-sm bg-white text-gray-700"
@@ -382,7 +382,6 @@ function RekapSurat() {
                           <li>
                             <a
                               onClick={() => handleDelete(surat.id)}
-                              // onClick={() => handleCekToast()}
                               className="block text-start rounded-md p-2 hover:bg-gray-200 hover:text-gray-700 cursor-pointer"
                             >
                               Hapus Data

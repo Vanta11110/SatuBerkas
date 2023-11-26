@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       await csrf();
-      const response = await axios.post("/login", {
+      const response = await axios.post("/api/login", {
         email,
         password,
       });

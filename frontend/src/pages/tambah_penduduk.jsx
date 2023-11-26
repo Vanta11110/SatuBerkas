@@ -17,6 +17,63 @@ const genderOptions = [
 const rtOptions = [
   { value: "01", label: "RT 01" },
   { value: "02", label: "RT 02" },
+  { value: "03", label: "RT 03" },
+  { value: "04", label: "RT 04" },
+  { value: "05", label: "RT 05" },
+  { value: "06", label: "RT 06" },
+  { value: "07", label: "RT 07" },
+  { value: "08", label: "RT 08" },
+  { value: "09", label: "RT 09" },
+  { value: "10", label: "RT 10" },
+  { value: "11", label: "RT 11" },
+  { value: "12", label: "RT 12" },
+  { value: "13", label: "RT 13" },
+  { value: "14", label: "RT 14" },
+  { value: "15", label: "RT 15" },
+  { value: "16", label: "RT 16" },
+  { value: "17", label: "RT 17" },
+  { value: "18", label: "RT 18" },
+  { value: "19", label: "RT 19" },
+  { value: "20", label: "RT 20" },
+  { value: "21", label: "RT 21" },
+  { value: "22", label: "RT 22" },
+  { value: "23", label: "RT 23" },
+  { value: "24", label: "RT 24" },
+  { value: "25", label: "RT 25" },
+  { value: "26", label: "RT 26" },
+  { value: "27", label: "RT 27" },
+  { value: "28", label: "RT 28" },
+  { value: "29", label: "RT 29" },
+  { value: "30", label: "RT 30" },
+  { value: "31", label: "RT 31" },
+  { value: "32", label: "RT 32" },
+  { value: "33", label: "RT 33" },
+  { value: "34", label: "RT 34" },
+  { value: "35", label: "RT 35" },
+  { value: "36", label: "RT 36" },
+  { value: "37", label: "RT 37" },
+  { value: "38", label: "RT 38" },
+  { value: "39", label: "RT 39" },
+  { value: "40", label: "RT 40" },
+  { value: "41", label: "RT 41" },
+  { value: "42", label: "RT 42" },
+  { value: "43", label: "RT 43" },
+  { value: "44", label: "RT 44" },
+  { value: "45", label: "RT 45" },
+  { value: "46", label: "RT 46" },
+  { value: "47", label: "RT 47" },
+  { value: "48", label: "RT 48" },
+  { value: "49", label: "RT 49" },
+  { value: "50", label: "RT 50" },
+  { value: "51", label: "RT 51" },
+  { value: "52", label: "RT 52" },
+  { value: "53", label: "RT 53" },
+  { value: "54", label: "RT 54" },
+  { value: "55", label: "RT 55" },
+  { value: "56", label: "RT 56" },
+  { value: "57", label: "RT 57" },
+  { value: "58", label: "RT 58" },
+  { value: "59", label: "RT 59" },
 ];
 
 const religionOptions = [
@@ -63,7 +120,7 @@ export default function AddDataPenduduk() {
   const [pendudukid, setPendudukId] = useState("");
   const [penduduk, setPenduduk] = useState([]);
   const [jenisKelamin, setJenisKelamin] = useSelectChange(null);
-  const [kelurahan, setKelurahan] = useSelectChange("Gunung Samarinda Baru");
+  const [kelurahan, setKelurahan] = useSelectChange("Gunung Samarinda");
   const [rt, setRt] = useSelectChange(null);
   const [agama, setAgama] = useSelectChange(null);
   const [pekerjaan, setPekerjaan] = useSelectChange(null);

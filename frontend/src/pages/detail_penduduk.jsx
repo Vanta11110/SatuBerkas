@@ -86,8 +86,8 @@ const DetailPenduduk = () => {
   }, [id,router]);
 
   
-  function fetchPenduduk(id, page = 1) {
-    let url = `/api/penduduk?page=${page}`;
+  function fetchPenduduk(id) {
+    let url = `/api/penduduk`;
     axios
       .get(url)
       .then((response) => {

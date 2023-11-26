@@ -8,73 +8,89 @@ import Head from "next/head";
 
 const Login = () => {
   const router = useRouter();
+  const { login } = useAuth({
+    middleware: "guest",
+    redirectIfAuthenticated: "/",
+  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
+  const [status, setStatus] = useState("");
   const [toast, setToast] = useState({
     show: false,
     message: "",
     success: true,
   });
 
-  const getCookie = (name) => {
-    const value = `;${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      return parts.pop().split(";").shift();
-    }
+  // const getCookie = (name) => {
+  //   const value = `;${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) {
+  //     return parts.pop().split(";").shift();
+  //   }
+  // };
+
+  // const csrf = async () => {
+  //   await axios.get("/sanctum/csrf-cookie");
+  // };
+
+  const submitForm = async (event) => {
+    event.preventDefault();
+
+    login({
+      email,
+      password,
+      setErrors,
+      setStatus,
+    });
   };
 
-  const csrf = async () => {
-    await axios.get("/sanctum/csrf-cookie");
-  };
+  // const submitForm = async (e) => {
+  //   e.preventDefault();
 
-  const submitForm = async (e) => {
-    e.preventDefault();
+  //   try {
+  //     await csrf();
+  //     const csrfToken = getCookie("XSRF-TOKEN");
+  //     const response = await axios.post(
+  //       "/api/login",
+  //       {
+  //         email,
+  //         password,
+  //       },
+  //       {
+  //         headers: {
+  //           "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
+  //         },
+  //       }
+  //     );
 
-    try {
-      await csrf();
-      const csrfToken = getCookie("XSRF-TOKEN");
-      const response = await axios.post(
-        "/api/login",
-        {
-          email,
-          password,
-        },
-        {
-          headers: {
-            "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
-          },
-        }
-      );
+  //     console.log("Login Berhasil", response.data);
 
-      console.log("Login Berhasil", response.data);
+  //     setToast({
+  //       show: true,
+  //       message: "Login Berhasil",
+  //       success: true,
+  //     });
 
-      setToast({
-        show: true,
-        message: "Login Berhasil",
-        success: true,
-      });
+  //     setTimeout(() => {
+  //       setToast(false);
+  //       router.push("/");
+  //     }, 1000);
+  //   } catch (error) {
+  //     console.error("Login Gagal", error);
 
-      setTimeout(() => {
-        setToast(false);
-        router.push("/");
-      }, 1000);
-    } catch (error) {
-      console.error("Login Gagal", error);
+  //     setToast({
+  //       show: true,
+  //       message: "Login Gagal",
+  //       success: false,
+  //     });
 
-      setToast({
-        show: true,
-        message: "Login Gagal",
-        success: false,
-      });
-
-      setTimeout(() => {
-        setToast(false);
-      }, 2000);
-    }
-  };
+  //     setTimeout(() => {
+  //       setToast(false);
+  //     }, 2000);
+  //   }
+  // };
 
 
   return (

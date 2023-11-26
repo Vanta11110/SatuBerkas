@@ -8,7 +8,6 @@ import { AdminLayout } from "@layout";
 import { Card } from "react-bootstrap";
 import ToastComp from "../components/Toast/Toast";
 import { useRouter } from "next/router";
-import { useAuth } from "@hooks/auth";
 import RTOptions from "../components/Options/RtOptions";
 import OccupationOptions from "../components/Options/OccupationOptions";
 import GenderOptions from "../components/Options/GenderOptions";
@@ -45,8 +44,17 @@ export default function AddDataPenduduk() {
     message: "",
     success: true,
   });
-  const { user } = useAuth();
   const router = useRouter();
+
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
 
 
   const namaChange = (e) => {

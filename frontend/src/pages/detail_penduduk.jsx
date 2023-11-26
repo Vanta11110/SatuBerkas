@@ -6,7 +6,6 @@ import Modal from "../components/Modal/Modal";
 import ToastComp from "../components/Toast/Toast";
 import { AdminLayout } from "@layout";
 import { Card } from "react-bootstrap";
-import {useAuth} from "@hooks/auth"
 import RTOptions from "../components/Options/RtOptions";
 import OccupationOptions from "../components/Options/OccupationOptions";
 import GenderOptions from "../components/Options/GenderOptions";
@@ -73,14 +72,20 @@ const DetailPenduduk = () => {
     message: "",
     success: true,
   });
-  // const { user } = useAuth();
   const router = useRouter();
   const { id } = router.query;
 
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
+
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/login");
-    // }
     fetchPenduduk(id);
     fetchSurat(id);
   }, [id,router]);

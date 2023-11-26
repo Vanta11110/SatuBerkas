@@ -9,36 +9,28 @@ import { useAuth } from "@hooks/auth"
 
 const Login = () => {
   const router = useRouter();
-  const { login } = useAuth({
-    middleware: "guest",
-    redirectIfAuthenticated: "/",
-  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
-  const [status, setStatus] = useState("");
   const [toast, setToast] = useState({
     show: false,
     message: "",
     success: true,
   });
 
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+       if (storedToken) {
+         router.push("/");
+       }
+     }
+   }, [router]);
+
 
   const csrf = async () => {
     await axios.get("/sanctum/csrf-cookie");
   };
-
-  // const submitForm = async (event) => {
-  //   event.preventDefault();
-
-  //   login({
-  //     email,
-  //     password,
-  //     setErrors,
-  //     setStatus,
-  //   });
-  // };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -55,8 +47,6 @@ const Login = () => {
 
       console.log("Login Berhasil", response.data);
       console.log("Login Berhasil");
-
-      // Menyimpan token ke penyimpanan lokal
       const apiToken = response.data.token;
       localStorage.setItem("api_token", apiToken);
 

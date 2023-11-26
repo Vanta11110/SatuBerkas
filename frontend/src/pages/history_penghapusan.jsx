@@ -5,7 +5,6 @@ import { Card } from "react-bootstrap";
 import { AdminLayout } from "@layout";
 import axios from "@lib/axios"
 import { useRouter } from "next/router";
-import {useAuth} from "@hooks/auth"
 import ToastComp from "@components/Toast/Toast";
 
 const History = () => {
@@ -14,7 +13,6 @@ const History = () => {
   const [nik, setNik] = useState(null);
   const [nama, setNama] = useState(null);
   const pendudukIds = softDeletedData.map((data) => data.penduduk_id);
-  const { user } = useAuth();
   const router = useRouter();
   const [toast, setToast] = useState({
     show: false,
@@ -22,10 +20,17 @@ const History = () => {
     success: true,
   });
 
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
+
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/login");
-    // };
     axios.get("/api/soft-deleted-data").then((response) => {
       setSoftDeletedData(response.data);
     });

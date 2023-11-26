@@ -7,7 +7,6 @@ import axios from "@lib/axios";
 import { AdminLayout } from "@layout";
 import { Card } from "react-bootstrap";
 import ToastComp from "../components/Toast/Toast";
-import {useAuth} from "@hooks/auth"
 import RTOptions from "../components/Options/RtOptions";
 
 const rtOptions = RTOptions();
@@ -25,7 +24,6 @@ const UploadSurat = () => {
 
   const router = useRouter();
   const { id } = router.query;
-  const { user } = useAuth();
 
   const [toast, setToast] = useState({
     show: false,
@@ -33,11 +31,18 @@ const UploadSurat = () => {
     success: true,
   });
 
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
+
 
   useEffect(() => {
-    // if(!user){
-    //   router.push('/login')
-    // }
     fetchPenduduk(id);
   }, []);
 

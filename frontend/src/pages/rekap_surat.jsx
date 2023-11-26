@@ -8,7 +8,6 @@ import Link from "next/link";
 import Modal from "@components/Modal/Modal";
 import ToastComp from "@components/Toast/Toast"
 import { useRouter } from "next/router";
-import { useAuth } from "@hooks/auth";
 
 function RekapSurat() {
   const [uploadedSurat, setUploadedSurat] = useState([]);
@@ -33,7 +32,6 @@ function RekapSurat() {
      message: "",
      success: true,
    });
-   const { user } = useAuth();
    const router = useRouter();
 
    function formatDate(createdAt) {
@@ -47,11 +45,15 @@ function RekapSurat() {
      });
    }
 
-  //  useEffect(() => {
-  //    if (!user) {
-  //      router.push("/login");
-  //    }
-  //  }, [user, router]);
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
   
   useEffect(() => {
     fetchBerkas();

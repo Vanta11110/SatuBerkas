@@ -4,18 +4,20 @@ import { AdminLayout } from "@layout";
 import { PendudukList } from "../components/Penduduk";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import {useAuth} from "@hooks/auth"
 
 
 const DataPenduduk = () => {
-  // const {user} = useAuth();
-  // const router = useRouter();
-  
-  // useEffect (() =>{
-  //   if(!user){
-  //     router.push("/login");
-  //   }
-  // },[user, router]);
+   const router = useRouter();
+
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
 
   return (
     <>

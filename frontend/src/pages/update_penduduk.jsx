@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import Toast from "../components/Toast/Toast";
 import { AdminLayout } from "@layout"
 import { Card } from "react-bootstrap";
-import {useAuth} from "@hooks/auth"
 import RTOptions from "../components/Options/RtOptions";
 import OccupationOptions from "../components/Options/OccupationOptions";
 import GenderOptions from "../components/Options/GenderOptions";
@@ -70,7 +69,6 @@ const UpdatePenduduk = () => {
 
   const router = useRouter();
   const { id } = router.query;
-  const { user } = useAuth();
 
   const [toast, setToast] = useState({
     show: false,
@@ -78,10 +76,18 @@ const UpdatePenduduk = () => {
     success: true,
   });
 
+
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = localStorage.getItem("api_token");
+
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
+
   useEffect(() => {
-    // if(!user){
-    //   router.push('/login')
-    // }
     fetchPenduduk(id);
   }, [user, router]);
 

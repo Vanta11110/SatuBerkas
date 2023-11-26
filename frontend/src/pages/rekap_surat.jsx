@@ -59,7 +59,7 @@ function RekapSurat() {
 
   useEffect(()=>{
     fetchPenduduk(pendudukIds);
-  },[penduduk, pendudukIds]);
+  },[penduduk]);
   
 
   function fetchPenduduk(id) {

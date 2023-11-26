@@ -8,11 +8,9 @@ import { AdminLayout } from "@layout";
 import { Card } from "react-bootstrap";
 import ToastComp from "../components/Toast/Toast";
 import {useAuth} from "@hooks/auth"
+import RTOptions from "../components/Options/RtOptions";
 
-const rtOptions = [
-  { value: "01", label: "RT 01" },
-  { value: "02", label: "RT 02" },
-];
+const rtOptions = RTOptions();
 
 const UploadSurat = () => {
   const [penduduk, setPenduduk] = useState([]);
@@ -139,7 +137,9 @@ const UploadSurat = () => {
           <Card.Body>
             <div className="main-content min-h-screen bg-white text-black">
               <div className="mx-auto border border-gray-300 rounded-md py-4 px-8 ml-72 bg-white">
-                <h1 className="text-2xl text-center font-bold mb-4">Formulir Upload Surat</h1>
+                <h1 className="text-2xl text-center font-bold mb-4">
+                  Formulir Upload Surat
+                </h1>
 
                 {/* Form Informasi Penduduk */}
                 <form className="mb-8">
@@ -212,8 +212,72 @@ const UploadSurat = () => {
                       id="jenisSurat"
                       name="jenisSurat"
                       options={[
-                        { value: "Surat Kematian", label: "Surat Kematian" },
-                        { value: "Surat Menikah", label: "Surat Menikah" },
+                        {
+                          value: "Surat Pengantar Nikah",
+                          label: "Surat Pengantar Nikah",
+                        },
+                        {
+                          value: "Surat Pengantar Cerai",
+                          label: "Surat Pengantar Cerai",
+                        },
+                        {
+                          value: "Surat Pengantar Rujuk",
+                          label: "Surat Pengantar Rujuk",
+                        },
+                        {
+                          value: "Surat Keterangan Kelahiran",
+                          label: "Surat Keterangan Kelahiran",
+                        },
+                        {
+                          value: "Surat Keterangan Kematian",
+                          label: "Surat Keterangan Kematian",
+                        },
+                        {
+                          value:
+                            "Surat Keterangan Tidak Mampu/keringanan Biaya Sekolah",
+                          label:
+                            "Surat Keterangan Tidak Mampu/keringanan Biaya Sekola",
+                        },
+                        {
+                          value: "Surat Keterangan Belum Menikah",
+                          label: "Surat Keterangan Belum Menikah",
+                        },
+                        {
+                          value: "Surat Keterangan Janda",
+                          label: "Surat Keterangan Janda",
+                        },
+                        {
+                          value: "Surat Keterangan Wali Nikah",
+                          label: "Surat Keterangan Wali Nikah",
+                        },
+                        {
+                          value: "Surat Pengantar SKCK",
+                          label: "Surat Pengantar SKCK",
+                        },
+                        {
+                          value: "Surat Kuasa Ahli Waris",
+                          label: "Surat Kuasa Ahli Waris",
+                        },
+                        {
+                          value: "Surat Pernyataan Ahli Waris",
+                          label: "Surat Pernyataan Ahli Waris",
+                        },
+                        {
+                          value: "Surat Keterangan Beda Nama",
+                          label: "Surat Keterangan Beda Nama",
+                        },
+                        {
+                          value: "Surat Keterangan Ghoib",
+                          label: "Surat Keterangan Ghoib",
+                        },
+                        {
+                          value: "Surat Bertempat Tinggal Sementara",
+                          label: "Surat Bertempat Tinggal Sementara",
+                        },
+                        {
+                          value: "Surat Domisili Usaha Perusahaan",
+                          label: "Surat Domisili Usaha Perusahaan",
+                        },
                       ]}
                       placeholder="Pilih Jenis Surat"
                       value={jenisSurat}
@@ -239,20 +303,18 @@ const UploadSurat = () => {
                       accept=".pdf, .doc, .docx" // Specify allowed file types
                       onChange={handleFileChange}
                       className="w-full border p-2 rounded-md"
-                      
                     />
                     <input type="hidden" name="pendudukId" value={id} />
                   </div>
                 </form>
                 <div className="flex w-full justify-center">
-
-                <button
-                  onClick={handleFileSubmit}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-4 transition-colors"
+                  <button
+                    onClick={handleFileSubmit}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-4 transition-colors"
                   >
-                  Upload File
-                </button>
-                    </div>
+                    Upload File
+                  </button>
+                </div>
               </div>
             </div>
             {toast.show && (

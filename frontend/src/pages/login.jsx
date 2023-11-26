@@ -21,29 +21,33 @@ const Login = () => {
   const getCookie = (name) => {
     const value = `;${document.cookie}`;
     const parts = value.split(`; ${name}=`);
-    if (parts.length === 2){
-      return parts.pop().split(';').shift();
+    if (parts.length === 2) {
+      return parts.pop().split(";").shift();
     }
-  }
+  };
 
   const csrf = async () => {
     await axios.get("/sanctum/csrf-cookie");
   };
 
-
-
   const submitForm = async (e) => {
     e.preventDefault();
 
-    
     try {
       await csrf();
-      const csrfToken = getCookie('XSRF-TOKEN');
-      console.log(decodeURIComponent(csrfToken));
-      const response = await axios.post("/login", {
-        email,
-        password,
-      });
+      const csrfToken = getCookie("XSRF-TOKEN");
+      const response = await axios.post(
+        "/login",
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            "X-XSRF-TOKEN": decodeURIComponent(csrfToken),
+          },
+        }
+      );
 
       console.log("Login Berhasil", response.data);
 
@@ -68,9 +72,10 @@ const Login = () => {
 
       setTimeout(() => {
         setToast(false);
-      }, 1000);
+      }, 2000);
     }
   };
+
 
   return (
     <>

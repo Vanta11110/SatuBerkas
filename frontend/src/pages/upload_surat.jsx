@@ -283,6 +283,10 @@ const UploadSurat = () => {
                           value: "Surat Domisili Usaha Perusahaan",
                           label: "Surat Domisili Usaha Perusahaan",
                         },
+                        {
+                          value: "Surat Keterangan Domisili",
+                          label: "Surat Keterangan Domisili",
+                        },
                       ]}
                       placeholder="Pilih Jenis Surat"
                       value={jenisSurat}

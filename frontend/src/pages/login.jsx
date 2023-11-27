@@ -83,7 +83,7 @@ const Login = () => {
       <div className="flex justify-center items-center h-screen border font-sans">
         <div className="w-full h-full">
           <div className=" min-h-screen flex items-center justify-center py-2  bg-orangePrimary">
-            <div className="bg-white border-white border box-border p-8 w-1/3  rounded-3xl shadow-lg opacity-85 ">
+            <div className="bg-white border-white border box-border p-8 sm:w-1/2 md:w-1/3  rounded-3xl shadow-lg opacity-85 ">
               <div className="justify-center flex">
                 <img
                   src="assets/img/logo_kelurahan.png"

@@ -278,8 +278,57 @@ function RekapSurat() {
                   className="text-sm"
                 >
                   <option value="">Jenis Surat</option>
-                  <option value="Surat Menikah">Surat Menikah</option>
-                  <option value="Surat Kematian">Surat Kematian</option>
+                  <option value="Surat Pengantar Nikah">
+                    Surat Pengantar Nikah
+                  </option>
+                  <option value="Surat Pengantar Cerai">
+                    Surat Pengantar Cerai
+                  </option>
+                  <option value="Surat Pengantar Rujuk">
+                    Surat Pengantar Rujuk
+                  </option>
+                  <option value="Surat Surat Keterangan Kelahiran">
+                    Surat Keterangan Kelahiran
+                  </option>
+                  <option value="Surat Keterangan Kematian">
+                    Surat Keterangan Kematian
+                  </option>
+                  <option value="Surat Keterangan Tidak Mampu/keringanan Biaya Sekolahn">
+                    Surat Keterangan Tidak Mampu/keringanan Biaya Sekolah
+                  </option>
+                  <option value="Surat Keterangan Belum Menikah">
+                    Surat Keterangan Belum Menikah
+                  </option>
+                  <option value="Surat Keterangan Janda">
+                    Surat Keterangan Janda
+                  </option>
+                  <option value="Surat Keterangan Wali Nikah">
+                    Surat Keterangan Wali Nikah
+                  </option>
+                  <option value="Surat Pengantar SKCK">
+                    Surat Pengantar SKCK
+                  </option>
+                  <option value="Surat Kuasa Ahli Waris">
+                    Surat Kuasa Ahli Waris
+                  </option>
+                  <option value="Surat Pernyataan Ahli Waris">
+                    Surat Pernyataan Ahli Waris
+                  </option>
+                  <option value="Surat Keterangan Beda Nama">
+                    Surat Keterangan Beda Nama
+                  </option>
+                  <option value="Surat Keterangan Ghoib">
+                    Surat Keterangan Ghoib
+                  </option>
+                  <option value="Surat Bertempat Tinggal Sementara">
+                    Surat Bertempat Tinggal Sementara
+                  </option>
+                  <option value="Surat Domisili Usaha Perusahaan">
+                    Surat Domisili Usaha Perusahaan
+                  </option>
+                  <option value="Surat Keterangan Domisili">
+                    Surat Keterangan Domisili
+                  </option>
                 </Form.Control>
               </Form.Group>
               <Button

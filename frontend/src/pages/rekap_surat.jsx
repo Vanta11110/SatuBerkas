@@ -15,10 +15,6 @@ function RekapSurat() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedJenisSurat, setSelectedJenisSurat] = useState("");
-   const [penduduk, setPenduduk] = useState([]);
-   const [nik, setNik] = useState(null);
-   const [nama, setNama] = useState(null);
-   const pendudukIds = uploadedSurat.map((data) => data.penduduk_id);
    const [activeDropdown, setActiveDropdown] = useState(null);
    const [showModal, setShowModal] = useState(false);
    const [deleteId, setDeleteId] = useState(null);
@@ -60,24 +56,7 @@ function RekapSurat() {
     fetchBerkas();
   }, [selectedYear, selectedMonth, selectedJenisSurat]);
 
-  useEffect(()=>{
-    fetchPenduduk(pendudukIds);
-  },[penduduk, pendudukIds]);
   
-
-  function fetchPenduduk(id) {
-    let url = `/api/penduduk/${id}`;
-    axios
-      .get(url)
-      .then((response) => {
-        setPenduduk(response.data);
-        setNik(response.data.nik);
-        setNama(response.data.nama);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 
   function fetchBerkas() {
     

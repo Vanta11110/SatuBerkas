@@ -9,10 +9,8 @@ import ToastComp from "@components/Toast/Toast";
 
 const History = () => {
   const [softDeletedData, setSoftDeletedData] = useState([]);
-  const [penduduk, setPenduduk] = useState([]);
-  const [nik, setNik] = useState(null);
-  const [nama, setNama] = useState(null);
-  const pendudukIds = softDeletedData.map((data) => data.penduduk_id);
+  const [pendudukData, setPendudukData] = useState({});
+  // const pendudukIds = softDeletedData.map((data) => data.penduduk_id);
   const router = useRouter();
   const [toast, setToast] = useState({
     show: false,
@@ -33,24 +31,27 @@ const History = () => {
   useEffect(() => {
     axios.get("/api/soft-deleted-data").then((response) => {
       setSoftDeletedData(response.data);
+      fetchPenduduk(response.data);
     });
 
-    fetchPenduduk(pendudukIds);
-  }, [pendudukIds, router]);
+  }, []);
 
-  function fetchPenduduk(id) {
-    let url = `/api/penduduk/${id}`;
-    axios
-      .get(url)
-      .then((response) => {
-        setPenduduk(response.data);
-        setNik(response.data.nik);
-        setNama(response.data.nama);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+   function fetchPenduduk(deletedData) {
+     const pendudukIds = deletedData.map((data) => data.penduduk_id);
+     let url = `/api/penduduk/${pendudukIds.join(",")}`;
+     axios
+       .get(url)
+       .then((response) => {
+         const pendudukMap = response.data.reduce((map, penduduk) => {
+           map[penduduk.id] = penduduk;
+           return map;
+         }, {});
+         setPendudukData(pendudukMap);
+       })
+       .catch((error) => {
+         console.error(error);
+       });
+   }
 
   function formatDeletedAt(createdAt) {
     const date = new Date(createdAt);
@@ -141,10 +142,10 @@ const History = () => {
                           {index + 1}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
-                          {nama}
+                          {pendudukData[item.penduduk_id]?.nama || ""}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
-                          {nik}
+                          {pendudukData[item.penduduk_id]?.nik || ""}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
                           {item.nama_surat}

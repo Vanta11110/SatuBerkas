@@ -90,13 +90,13 @@ export default function AddDataPenduduk() {
     setAlamat(e.target.value);
   };
   const ayahChange = (e) => {
-    let re = /^[A-Za-z\s]+$/;
+    let re = /^[A-Za-z\s-]+$/;
     if (e.target.value === "" || re.test(e.target.value)) {
       setAyah(e.target.value);
     }
   };
   const ibuChange = (e) => {
-    let re = /^[A-Za-z\s]+$/;
+    let re = /^[A-Za-z\s-]+$/;
     if (e.target.value === "" || re.test(e.target.value)) {
       setIbu(e.target.value);
     }

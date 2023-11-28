@@ -6,6 +6,7 @@ import { AdminLayout } from "@layout";
 import axios from "@lib/axios"
 import { useRouter } from "next/router";
 import ToastComp from "@components/Toast/Toast";
+import PendudukInfo from "@components/Penduduk/PendudukInfo";
 
 const History = () => {
   const [softDeletedData, setSoftDeletedData] = useState([]);
@@ -147,10 +148,9 @@ const History = () => {
                           {index + 1}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
-                          {pendudukData[item.penduduk_id]?.nama || ""}
+                          <PendudukInfo pendudukId={item.penduduk_id} />
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
-                          {pendudukData[item.penduduk_id]?.nik || ""}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
                           {item.nama_surat}

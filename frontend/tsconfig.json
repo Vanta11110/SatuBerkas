@@ -43,6 +43,6 @@
     ".next/types/**/*.ts",
     "src/components/Penduduk/PendudukList.jsx",
     "src/pages/rekap_surat.jsx"
-, "src/pages/login1.tsx"  ],
+, "src/pages/login1.tsx", "src/components/Penduduk/PendudukInfo.jsx"  ],
   "exclude": ["node_modules"]
 }

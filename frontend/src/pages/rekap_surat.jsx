@@ -8,6 +8,7 @@ import Link from "next/link";
 import Modal from "@components/Modal/Modal";
 import ToastComp from "@components/Toast/Toast"
 import { useRouter } from "next/router";
+import PendudukInfo from "@components/Penduduk/PendudukInfo";
 
 function RekapSurat() {
   const [uploadedSurat, setUploadedSurat] = useState([]);
@@ -376,26 +377,16 @@ function RekapSurat() {
                     <tr key={surat}>
                       <td className="text-center">{index + 1}</td>
                       <td className="text-center">
-                        {nama != null ? (
-                          nama
-                        ) : (
-                          <FontAwesomeIcon
-                            fixedWidth
-                            icon={faSpinner}
-                            spinPulse
-                          />
-                        )}
+                        <PendudukInfo
+                          pendudukId={item.penduduk_id}
+                          infoType="nama"
+                        />
                       </td>
                       <td className="text-center">
-                        {nik != null ? (
-                          nik
-                        ) : (
-                          <FontAwesomeIcon
-                            fixedWidth
-                            icon={faSpinner}
-                            spinPulse
-                          />
-                        )}
+                        <PendudukInfo
+                          pendudukId={item.penduduk_id}
+                          infoType="nik"
+                        />
                       </td>
                       <td className="text-center">{surat.nama_surat}</td>
                       <td className="text-center">{surat.jenis_surat}</td>

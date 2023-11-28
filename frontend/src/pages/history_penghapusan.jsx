@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import HeadCustom from "../layout/AdminLayout/Header/head";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { AdminLayout } from "@layout";
 import axios from "@lib/axios"
 import { useRouter } from "next/router";
@@ -20,15 +20,15 @@ const History = () => {
     success: true,
   });
 
-   useEffect(() => {
-     if (typeof window !== "undefined") {
-       const storedToken = sessionStorage.getItem("api_token");
+  //  useEffect(() => {
+  //    if (typeof window !== "undefined") {
+  //      const storedToken = sessionStorage.getItem("api_token");
 
-       if (!storedToken) {
-         router.push("/login");
-       }
-     }
-   }, [router]);
+  //      if (!storedToken) {
+  //        router.push("/login");
+  //      }
+  //    }
+  //  }, [router]);
 
   useEffect(() => {
     axios.get("/api/soft-deleted-data").then((response) => {
@@ -103,13 +103,12 @@ const History = () => {
           <Card.Body>
             {/* Konten */}
             <div className="flex-grow flex justify-center bg-white">
-              <div className=" border border-gray-300 rounded-md p-6">
+              <div className=" border border-gray-300 rounded-md p-6 overflow-x-auto">
                 <h1 className="text-2xl font-bold mb-4 text-black">
                   Riwayat Penghapusan
                 </h1>
 
-                {/* Tampilkan komponen RiwayatHapus */}
-                <table className="w-full border-collapse border border-gray-300 text-black">
+                <Table responsive bordered hover>
                   <thead>
                     <tr>
                       <th className="border border-gray-300 px-4 py-2 text-center">
@@ -167,7 +166,7 @@ const History = () => {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </Table>
               </div>
             </div>
           </Card.Body>

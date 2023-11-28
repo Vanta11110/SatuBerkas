@@ -36,22 +36,27 @@ const History = () => {
 
   }, []);
 
-   function fetchPenduduk(deletedData) {
-     const pendudukIds = deletedData.map((data) => data.penduduk_id);
-     let url = `/api/penduduk/${pendudukIds.join(",")}`;
-     axios
-       .get(url)
-       .then((response) => {
+ function fetchPenduduk(deletedData) {
+   const pendudukIds = deletedData.map((data) => data.penduduk_id);
+   let url = `/api/penduduk/${pendudukIds.join(",")}`;
+   axios
+     .get(url)
+     .then((response) => {
+       if (Array.isArray(response.data)) {
          const pendudukMap = response.data.reduce((map, penduduk) => {
            map[penduduk.id] = penduduk;
            return map;
          }, {});
          setPendudukData(pendudukMap);
-       })
-       .catch((error) => {
-         console.error(error);
-       });
-   }
+       } else {
+         console.error("Invalid response structure for penduduk data");
+       }
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+ }
+
 
   function formatDeletedAt(createdAt) {
     const date = new Date(createdAt);

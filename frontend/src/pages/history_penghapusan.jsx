@@ -20,15 +20,15 @@ const History = () => {
     success: true,
   });
 
-  //  useEffect(() => {
-  //    if (typeof window !== "undefined") {
-  //      const storedToken = sessionStorage.getItem("api_token");
+   useEffect(() => {
+     if (typeof window !== "undefined") {
+       const storedToken = sessionStorage.getItem("api_token");
 
-  //      if (!storedToken) {
-  //        router.push("/login");
-  //      }
-  //    }
-  //  }, [router]);
+       if (!storedToken) {
+         router.push("/login");
+       }
+     }
+   }, [router]);
 
   useEffect(() => {
     axios.get("/api/soft-deleted-data").then((response) => {

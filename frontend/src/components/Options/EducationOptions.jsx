@@ -10,6 +10,9 @@ const EducationOptions = () => {
     { value: "S1", label: "S1" },
     { value: "S2", label: "S2" },
     { value: "S3", label: "S3" },
+    { value: "Diploma I", label: "Diploma I" },
+    { value: "Diploma II", label: "Diploma II" },
+    { value: "Diploma III", label: "Diploma III" },
   ];
   return educationOptions;
 };

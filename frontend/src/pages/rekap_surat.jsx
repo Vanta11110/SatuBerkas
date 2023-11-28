@@ -329,6 +329,9 @@ function RekapSurat() {
                   <option value="Surat Keterangan Domisili">
                     Surat Keterangan Domisili
                   </option>
+                  <option value="Surat Keterangan Bangunan">
+                    Surat Keterangan Bangunan
+                  </option>
                 </Form.Control>
               </Form.Group>
               <Button

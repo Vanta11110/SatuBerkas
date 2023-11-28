@@ -287,6 +287,10 @@ const UploadSurat = () => {
                           value: "Surat Keterangan Domisili",
                           label: "Surat Keterangan Domisili",
                         },
+                        {
+                          value: "Surat Keterangan Bangunan",
+                          label: "Surat Keterangan Bangunan",
+                        },
                       ]}
                       placeholder="Pilih Jenis Surat"
                       value={jenisSurat}

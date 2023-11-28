@@ -357,13 +357,13 @@ function RekapSurat() {
                       <td className="text-center">{index + 1}</td>
                       <td className="text-center">
                         <PendudukInfo
-                          pendudukId={item.penduduk_id}
+                          pendudukId={surat.penduduk_id}
                           infoType="nama"
                         />
                       </td>
                       <td className="text-center">
                         <PendudukInfo
-                          pendudukId={item.penduduk_id}
+                          pendudukId={surat.penduduk_id}
                           infoType="nik"
                         />
                       </td>

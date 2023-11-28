@@ -148,9 +148,16 @@ const History = () => {
                           {index + 1}
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
-                          <PendudukInfo pendudukId={item.penduduk_id} />
+                          <PendudukInfo
+                            pendudukId={item.penduduk_id}
+                            infoType="nama"
+                          />
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
+                          <PendudukInfo
+                            pendudukId={item.penduduk_id}
+                            infoType="nik"
+                          />
                         </td>
                         <td className="border border-gray-300 px-4 py-2 text-center">
                           {item.nama_surat}

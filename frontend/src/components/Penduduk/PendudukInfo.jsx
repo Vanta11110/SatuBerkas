@@ -1,9 +1,9 @@
-
+// components/PendudukInfo.jsx
 import React, { useEffect, useState } from "react";
 import axios from "@lib/axios";
 
-const PendudukInfo = ({ pendudukId }) => {
-  const [pendudukData, setPendudukData] = useState({});
+const PendudukInfo = ({ pendudukId, infoType }) => {
+  const [pendudukData, setPendudukData] = useState(null);
 
   useEffect(() => {
     if (pendudukId) {
@@ -18,17 +18,18 @@ const PendudukInfo = ({ pendudukId }) => {
     }
   }, [pendudukId]);
 
-  return (
-    <>
-      {pendudukData && (
-        <>
-          <div>{pendudukData.nama}</div>
-          <div>{pendudukData.nik}</div>
-          {/* Tambahkan informasi penduduk lainnya sesuai kebutuhan */}
-        </>
-      )}
-    </>
-  );
+  const renderInfo = () => {
+    switch (infoType) {
+      case "nama":
+        return <div>{pendudukData?.nama}</div>;
+      case "nik":
+        return <div>{pendudukData?.nik}</div>;
+      default:
+        return null;
+    }
+  };
+
+  return <>{pendudukData && renderInfo()}</>;
 };
 
 export default PendudukInfo;
